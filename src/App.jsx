@@ -3,6 +3,8 @@ import Welcome from "./components/welcome/Welcome";
 import BookPage from "./components/bookPage/BookPage";
 import UserPage from "./components/userPage/UserPage";
 import UserDetailPage from './components/userDetailPage/UserDetailPage';
+import BookDetailPage from './components/bookDetailPage/BookDetailPage';
+
 import "./App.css";
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
         <Route path="/users" element={<UserPage />} />
         <Route path="/users/:uid" element={<UserDetailPage />} />
         <Route path="/books" element={<BookPage />} />
+        <Route path="/books/:bid" element={<BookDetailPage />} />
       </Routes>
     </BrowserRouter>
   );
