@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Welcome from "./components/welcome/Welcome";
-import BookPage from "./components/bookPage/BookPage";
-import UserPage from "./components/userPage/UserPage";
-import UserDetailPage from './components/userDetailPage/UserDetailPage';
-import BookDetailPage from './components/bookDetailPage/BookDetailPage';
+import Welcome from "./pages/welcome/Welcome";
+import BookPage from "./pages/bookPage/BookPage";
+import UserPage from "./pages/userPage/UserPage";
+import UserDetailPage from "./pages/userDetailPage/UserDetailPage";
+import BookDetailPage from "./pages/bookDetailPage/BookDetailPage";
+import Dashboard from "./pages/dashboard/Dashboard";
+import MainLayout from "./layouts/mainLayout/MainLayout";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 import "./App.css";
 
@@ -11,11 +14,21 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/users" element={<UserPage />} />
-        <Route path="/users/:uid" element={<UserDetailPage />} />
-        <Route path="/books" element={<BookPage />} />
-        <Route path="/books/:bid" element={<BookDetailPage />} />
+        <Route path="/login" element={<h1>Login page</h1>} />
+        <Route path="/admin" element={<ProtectedRoute />}>
+          <Route path="dashboard" element={<Dashboard />} />
+        </Route>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/users">
+            <Route index element={<UserPage />} />
+            <Route path=":uid" element={<UserDetailPage />} />
+          </Route>
+          <Route path="/books">
+            <Route index element={<BookPage />} />
+            <Route path=":bid" element={<BookDetailPage />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

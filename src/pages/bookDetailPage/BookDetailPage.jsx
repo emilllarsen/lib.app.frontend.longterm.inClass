@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-
 export default function BookDetailPage(){
     const { bid } = useParams(); // Hook
     return(
