@@ -6,7 +6,9 @@ import UserDetailPage from "./pages/userDetailPage/UserDetailPage";
 import BookDetailPage from "./pages/bookDetailPage/BookDetailPage";
 import Dashboard from "./pages/dashboard/Dashboard";
 import MainLayout from "./layouts/mainLayout/MainLayout";
+import ErrorLayout from "./layouts/errorLayout/ErrorLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Notfound from "./pages/errorPages/NotFound";
 
 import "./App.css";
 
@@ -14,8 +16,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<ErrorLayout/>}>
+          <Route path="*" element={<Notfound />} />
+        </Route>
         <Route path="/login" element={<h1>Login page</h1>} />
-        <Route path="/admin" element={<ProtectedRoute />}>
+        <Route path="/admin " element={<ProtectedRoute />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
         <Route element={<MainLayout />}>
@@ -24,9 +29,10 @@ function App() {
             <Route index element={<UserPage />} />
             <Route path=":uid" element={<UserDetailPage />} />
           </Route>
+
           <Route path="/books">
             <Route index element={<BookPage />} />
-            <Route path=":bid" element={<BookDetailPage />} />
+            <Route path=":bid" element={<BookDetailPage />} />  
           </Route>
         </Route>
       </Routes>
